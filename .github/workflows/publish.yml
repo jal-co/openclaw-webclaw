@@ -1,0 +1,49 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Verify version matches tag
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::package.json version ($PKG_VERSION) does not match tag ($TAG_VERSION)"
+            exit 1
+          fi
+
+      - name: Build
+        run: |
+          # Install typebox (only runtime dep — openclaw resolves at plugin load time)
+          npm install --ignore-scripts
+          # TypeScript compiles against openclaw SDK stubs at runtime,
+          # so we skip type-checking and just emit JS
+          npx tsc --outDir dist --rootDir src \
+            --target ES2022 --module Node16 --moduleResolution Node16 \
+            --esModuleInterop --skipLibCheck --noCheck --declaration false
+
+      - name: Verify dist
+        run: |
+          test -f dist/index.js || { echo "::error::dist/index.js missing"; exit 1; }
+          echo "dist contents:"
+          ls -la dist/
+
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

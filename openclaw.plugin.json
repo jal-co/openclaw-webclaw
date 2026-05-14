@@ -1,0 +1,142 @@
+{
+  "id": "webclaw",
+  "name": "WebClaw",
+  "description": "Web extraction via WebClaw v1 API — scrape, search, crawl, extract, summarize, diff, map, batch, and brand. Replaces the bundled Firecrawl plugin.",
+  "version": "0.1.0",
+  "activation": {
+    "onStartup": false,
+    "onCapabilities": ["tool"]
+  },
+  "setup": {
+    "providers": [
+      {
+        "id": "webclaw",
+        "authMethods": ["api-key"],
+        "envVars": ["WEBCLAW_API_KEY"]
+      }
+    ],
+    "requiresRuntime": false
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "webclaw",
+      "method": "api-key",
+      "choiceId": "webclaw-api-key",
+      "choiceLabel": "WebClaw API key",
+      "groupId": "webclaw",
+      "groupLabel": "WebClaw",
+      "optionKey": "webclawApiKey",
+      "cliFlag": "--webclaw-api-key",
+      "cliOption": "--webclaw-api-key <key>",
+      "cliDescription": "WebClaw API key (wc_...)",
+      "onboardingScopes": ["text-inference"]
+    }
+  ],
+  "contracts": {
+    "webFetchProviders": ["webclaw"],
+    "webSearchProviders": ["webclaw"],
+    "tools": [
+      "webclaw_scrape",
+      "webclaw_search",
+      "webclaw_crawl",
+      "webclaw_extract",
+      "webclaw_summarize",
+      "webclaw_diff",
+      "webclaw_map",
+      "webclaw_batch",
+      "webclaw_brand"
+    ]
+  },
+  "toolMetadata": {
+    "webclaw_scrape": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_search": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_crawl": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_extract": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_summarize": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_diff": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_map": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_batch": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    },
+    "webclaw_brand": {
+      "authSignals": [{ "provider": "webclaw" }],
+      "configSignals": [{ "rootPath": "plugins.entries.webclaw.config", "requiredAny": ["apiKey"] }]
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKey": {
+        "type": ["string", "object"]
+      },
+      "baseUrl": {
+        "type": "string"
+      },
+      "timeoutSeconds": {
+        "type": "number",
+        "minimum": 1,
+        "default": 30
+      },
+      "onlyMainContent": {
+        "type": "boolean",
+        "default": true
+      },
+      "maxAgeMs": {
+        "type": "number",
+        "minimum": 0,
+        "default": 172800000
+      }
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "WebClaw API Key",
+      "help": "API key for webclaw.io (cloud) or your self-hosted instance. Fallback: WEBCLAW_API_KEY env var.",
+      "sensitive": true,
+      "placeholder": "wc_..."
+    },
+    "baseUrl": {
+      "label": "Base URL",
+      "help": "WebClaw API base URL. Default: https://api.webclaw.io. Change for self-hosted.",
+      "placeholder": "https://api.webclaw.io",
+      "advanced": true
+    },
+    "timeoutSeconds": {
+      "label": "Request Timeout",
+      "help": "Default timeout in seconds for all WebClaw API requests.",
+      "advanced": true
+    },
+    "onlyMainContent": {
+      "label": "Extract Main Content Only",
+      "help": "When enabled, scrape results skip navigation, sidebars, and footers by default."
+    },
+    "maxAgeMs": {
+      "label": "Cache TTL (ms)",
+      "help": "How long to cache scrape and search results locally, in milliseconds. Default: 48 hours.",
+      "advanced": true
+    }
+  }
+}
