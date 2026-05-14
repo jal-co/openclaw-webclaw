@@ -6,6 +6,7 @@ OpenClaw plugin that replaces the bundled Firecrawl plugin with native [WebClaw]
 [![OpenClaw](https://shieldcn.dev/badge/OpenClaw-Plugin.svg?variant=branded&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6IiBmaWxsPSIjZmY2YjZiIi8+PC9zdmc+)](https://openclaw.ai)
 [![WebClaw](https://shieldcn.dev/badge/Powered_by-WebClaw.svg?variant=branded&logo=safari)](https://webclaw.io)
 [![Docs](https://shieldcn.dev/badge/Docs-webclaw.io.svg?variant=branded&logo=readthedocs)](https://webclaw.io/docs)
+[![NHS Agentic Readiness Score](https://nothumansearch.ai/badge/xquik.com.svg)](https://nothumansearch.ai/site/xquik.com)
 
 ---
 
@@ -17,7 +18,7 @@ WebClaw ships as a CLI, REST API, and MCP server, and is a **drop-in replacement
 
 - **Source:** [github.com/0xMassi/webclaw](https://github.com/0xMassi/webclaw)
 - **Docs:** [webclaw.io/docs](https://webclaw.io/docs)
-- **Cloud API:** [api.webclaw.io](https://api.webclaw.io)
+- **Cloud API base URL:** `https://api.webclaw.io`
 - **License:** AGPL-3.0
 
 ## Why this plugin?
@@ -41,6 +42,26 @@ This plugin replaces Firecrawl entirely. It registers as both the `webFetchProvi
 | `webclaw_map` | Sitemap discovery — find all URLs on a site via sitemap.xml and robots.txt |
 | `webclaw_batch` | Multi-URL extraction in a single concurrent request |
 | `webclaw_brand` | Brand identity extraction — colors, fonts, logo, favicon |
+
+## Related X/Twitter Workflows
+
+Keep WebClaw focused on general web search, web fetch, site crawling, page
+extraction, content diffing, sitemap discovery, batch scraping, and brand
+extraction. If the same OpenClaw workspace needs public X/Twitter data or
+visible X/Twitter actions, install TweetClaw as a separate OpenClaw plugin:
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+```
+
+[TweetClaw](https://github.com/Xquik-dev/tweetclaw) covers scrape tweets, tweet
+scraper workflows, search tweets, search tweet replies, follower export, user
+lookup, media upload, media download, direct messages, monitor tweets, webhooks,
+giveaway draws, and approval-gated post tweets or post tweet replies. See the
+[ClawHub listing](https://clawhub.ai/plugins/@xquik/tweetclaw) or
+[npm package](https://www.npmjs.com/package/@xquik/tweetclaw) for setup details.
+Keep WebClaw API keys and X/Twitter credentials separate, and review visible
+X/Twitter actions through OpenClaw approval flows.
 
 ## Install
 
