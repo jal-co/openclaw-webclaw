@@ -88,7 +88,7 @@ openclaw plugins install /path/to/openclaw-webclaw
 Or if published to npm:
 
 ```bash
-openclaw plugins install npm:@jal-co/openclaw-webclaw
+openclaw plugins install npm:@jalco/openclaw-webclaw
 ```
 
 ### 4. Disable the bundled Firecrawl plugin
