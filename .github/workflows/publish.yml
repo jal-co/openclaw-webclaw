@@ -27,14 +27,10 @@ jobs:
             exit 1
           fi
 
-      - name: Build
+      - name: Install and build
         run: |
-          # Install only production deps (typebox) — skip devDeps since
-          # @openclaw/plugin-sdk isn't on public npm and we don't need it
-          # for emitting JS (--noCheck skips type-checking)
           npm install --omit=dev --ignore-scripts
-          npm install --no-save typescript
-          npx tsc --outDir dist --rootDir src \
+          npx -y typescript tsc --outDir dist --rootDir src \
             --target ES2022 --module Node16 --moduleResolution Node16 \
             --esModuleInterop --skipLibCheck --noCheck --declaration false
 

@@ -1,6 +1,6 @@
 {
   "name": "@jal-co/openclaw-webclaw",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OpenClaw plugin that replaces the bundled Firecrawl plugin with native WebClaw v1 API support",
   "repository": {
     "type": "git",
@@ -43,8 +43,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "build": "tsc --outDir dist --rootDir src --target ES2022 --module Node16 --moduleResolution Node16 --esModuleInterop --skipLibCheck --noCheck --declaration false"
   },
   "files": [
     "dist/**",
