@@ -30,7 +30,8 @@ jobs:
       - name: Install and build
         run: |
           npm install --omit=dev --ignore-scripts
-          npx -y typescript tsc --outDir dist --rootDir src \
+          npm install --no-save typescript
+          ./node_modules/.bin/tsc --outDir dist --rootDir src \
             --target ES2022 --module Node16 --moduleResolution Node16 \
             --esModuleInterop --skipLibCheck --noCheck --declaration false
 
