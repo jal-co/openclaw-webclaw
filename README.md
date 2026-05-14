@@ -26,6 +26,8 @@ OpenClaw ships with a bundled Firecrawl plugin that exposes two tools (`firecraw
 
 This plugin replaces Firecrawl entirely. It registers as both the `webFetchProvider` and `webSearchProvider` so OpenClaw's built-in web tools route through WebClaw, plus exposes **9 dedicated tools** for the full v1 API surface — crawling, LLM extraction, content diffing, sitemap discovery, batch scraping, brand extraction, and more.
 
+![Brand extraction demo — Pip extracting Linear's brand identity via webclaw_brand in Discord](assets/demo-brand-extraction.png)
+
 ## Tools
 
 | Tool | Description |
@@ -180,6 +182,30 @@ If you're already using `FIRECRAWL_API_KEY` with a `wc_`-prefixed key, you're hi
 3. Restart the gateway
 
 Your existing `web_fetch` and `web_search` calls will now route through WebClaw, plus you get 7 new tools (`webclaw_crawl`, `webclaw_extract`, `webclaw_summarize`, `webclaw_diff`, `webclaw_map`, `webclaw_batch`, `webclaw_brand`).
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `WEBCLAW_API_KEY` | Yes | Your WebClaw API key (`wc_...`). Get one at [webclaw.io](https://webclaw.io). |
+| `WEBCLAW_BASE_URL` | No | Override the API base URL. Default: `https://api.webclaw.io`. Use for self-hosted instances. |
+
+The plugin resolves credentials in this order:
+
+1. `plugins.entries.webclaw.config.apiKey` in OpenClaw config (set via dashboard or config file)
+2. `WEBCLAW_API_KEY` environment variable
+
+For Docker Compose deployments, add the variable to your `.env` file and pass it through in `docker-compose.yml`:
+
+```yaml
+services:
+  openclaw-gateway:
+    env_file: .env
+    environment:
+      - WEBCLAW_API_KEY
+```
+
+For systemd or bare-metal installs, add it to `~/.openclaw/.env` or export it in the gateway service environment.
 
 ## Self-Hosting WebClaw
 
