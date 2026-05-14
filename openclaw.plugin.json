@@ -2,7 +2,7 @@
   "id": "webclaw",
   "name": "WebClaw",
   "description": "Web extraction via WebClaw v1 API — scrape, search, crawl, extract, summarize, diff, map, batch, and brand. Replaces the bundled Firecrawl plugin.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "activation": {
     "onStartup": false,
     "onCapabilities": ["tool"]
