@@ -29,10 +29,11 @@ jobs:
 
       - name: Build
         run: |
-          # Install typebox (only runtime dep — openclaw resolves at plugin load time)
-          npm install --ignore-scripts
-          # TypeScript compiles against openclaw SDK stubs at runtime,
-          # so we skip type-checking and just emit JS
+          # Install only production deps (typebox) — skip devDeps since
+          # @openclaw/plugin-sdk isn't on public npm and we don't need it
+          # for emitting JS (--noCheck skips type-checking)
+          npm install --omit=dev --ignore-scripts
+          npm install --no-save typescript
           npx tsc --outDir dist --rootDir src \
             --target ES2022 --module Node16 --moduleResolution Node16 \
             --esModuleInterop --skipLibCheck --noCheck --declaration false
