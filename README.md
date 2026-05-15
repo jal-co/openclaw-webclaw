@@ -57,9 +57,11 @@ openclaw plugins install @xquik/tweetclaw
 [TweetClaw](https://github.com/Xquik-dev/tweetclaw) covers scrape tweets, tweet
 scraper workflows, search tweets, search tweet replies, follower export, user
 lookup, media upload, media download, direct messages, monitor tweets, webhooks,
-giveaway draws, and approval-gated post tweets or post tweet replies. See the
-[ClawHub listing](https://clawhub.ai/plugins/@xquik/tweetclaw) or
-[npm package](https://www.npmjs.com/package/@xquik/tweetclaw) for setup details.
+giveaway draws, and approval-gated post tweets or post tweet replies. Use the
+TweetClaw GitHub repo and
+[npm package](https://www.npmjs.com/package/@xquik/tweetclaw) for setup details;
+the [ClawHub discovery page](https://clawhub.ai/plugins/@xquik/tweetclaw)
+remains useful for browsing while that listing lags behind npm.
 Keep WebClaw API keys and X/Twitter credentials separate, and review visible
 X/Twitter actions through OpenClaw approval flows.
 
